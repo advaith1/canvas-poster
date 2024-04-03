@@ -1,0 +1,5 @@
+.wrangler
+node_modules
+.dev.vars
+courses.json
+wrangler.toml

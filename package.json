@@ -1,0 +1,16 @@
+{
+	"name": "canvas-poster",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"set-token": "wrangler secret put CANVAS_TOKEN",
+		"create-kv": "wrangler kv:namespace create LAST_ANNOUNCEMENTS",
+		"start": "wrangler dev"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20231218.0",
+		"typescript": "^5.3.3",
+		"wrangler": "^3.22.4"
+	}
+}

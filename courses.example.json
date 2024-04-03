@@ -1,0 +1,7 @@
+[
+	{
+		"courseID": "cse101",
+		"canvasID": 12345,
+		"announcementWebhook": "https://discord.com/api/webhooks/..."
+	}
+]

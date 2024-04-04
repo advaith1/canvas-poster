@@ -45,7 +45,7 @@ const checkCourse = async ({ courseID, canvasID, announcementWebhook }: Course, 
 		const content = (await (await fetch('https://turndown.advaith.io', {
 			method: 'POST',
 			body: announcement.message
-		})).text()).replace(/\[(.+?)\]\((mailto:)?\1\)/g, '$1').replace(/\[(https?:\/\/.+?)\]\(.+?\)/g, '$1')
+		})).text()).replace(/\[(.+?)\]\((mailto:)?\1\)/g, '$1').replace(/\[(https?:\/\/.+?)\]\(.+?\)/g, '$1').replace(/https?:\/\/[^\s"'<>]+/g, url => url.replaceAll('\\', ''))
 
 		await fetch(announcementWebhook, {
 			method: 'POST',

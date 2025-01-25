@@ -23,6 +23,6 @@ Run `pnpm create-kv`, then copy the provided binding ID into wrangler.toml.
 
 In courses.json, set the `courseID`	to a unique string for the course, and set `canvasID` to the numeric course ID in the Canvas URL.
 
-Use [Webhook Creator](https://webhook-creator.advaith.workers.dev) to create a webhook in the channel and get the URL. (Don't create the webhook in Discord settings, use this tool instead.) Copy the URL it gives you and set it as `announcementWebhook` in courses.json.
+In Discord channel settings, go to the Integrations tab and create a webhook. Copy the new webhook's URL and set it as `announcementWebhook` in courses.json.
 
 When you're done, run `pnpm run deploy`. canvas-poster will now check every minute for new Canvas announcements and send them to the appropriate Discord channel.

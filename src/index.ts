@@ -47,7 +47,7 @@ const checkCourse = async ({ courseID, canvasID, announcementWebhook }: Course, 
 			body: announcement.message
 		})).text()).replace(/\[(.+?)\]\((mailto:)?\1\)/g, '$1').replace(/\[(https?:\/\/.+?)\]\(.+?\)/g, '$1').replace(/https?:\/\/[^\s"'<>]+/g, url => url.replaceAll('\\', ''))
 
-		await fetch(announcementWebhook, {
+		await fetch(announcementWebhook + '?with_components=true', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({

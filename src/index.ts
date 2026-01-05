@@ -25,6 +25,8 @@ interface Course {
 
 import courses from '../courses.json'
 
+const trim = (text: string, max: number) => text.length > max ? text.substring(0, max - 1)+'…' : text
+
 const checkCourse = async ({ courseID, canvasID, announcementWebhook }: Course, env: Env) => {
 	const announcements = await (await fetch(`https://canvas.ucsc.edu/api/v1/courses/${canvasID}/discussion_topics?only_announcements=true&no_avatar_fallback=1`, {
 		headers: {
@@ -53,7 +55,7 @@ const checkCourse = async ({ courseID, canvasID, announcementWebhook }: Course, 
 			body: JSON.stringify({
 				username: `${announcement.author.display_name} on Canvas`,
 				avatar_url: announcement.author.avatar_image_url,
-				content: `## ${announcement.title}\n\n${content}`,
+				content: trim(`## ${announcement.title}\n\n${content}`, 2000),
 				components: [
 					{
 						type: 1,

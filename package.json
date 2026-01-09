@@ -5,12 +5,18 @@
 	"scripts": {
 		"deploy": "wrangler deploy",
 		"set-token": "wrangler secret put CANVAS_TOKEN",
-		"create-kv": "wrangler kv:namespace create LAST_ANNOUNCEMENTS",
+		"create-kv": "wrangler kv namespace create LAST_ANNOUNCEMENTS",
 		"start": "wrangler dev"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20231218.0",
-		"typescript": "^5.3.3",
-		"wrangler": "^3.22.4"
-	}
+		"@cloudflare/workers-types": "^4.20260109.0",
+		"@types/turndown": "^5.0.6",
+		"typescript": "^5.9.3",
+		"wrangler": "^4.58.0"
+	},
+	"dependencies": {
+		"@mixmark-io/domino": "^2.2.0",
+		"turndown": "^7.2.2"
+	},
+	"packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321"
 }

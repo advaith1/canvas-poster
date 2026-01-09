@@ -1,29 +1,9 @@
-export interface Env {
-	CANVAS_TOKEN: string
-
-	LAST_ANNOUNCEMENTS: KVNamespace
-}
-
-interface Announcement {
-	id: number
-	title: string
-	message: string
-	url: string
-	author: {
-		display_name: string
-		avatar_image_url: string | null
-	}
-}
-
-type CanvasResponse = Announcement[]
-
-interface Course {
-	courseID: string
-	canvasID: number
-	announcementWebhook: string
-}
+import TurndownService from 'turndown'
+import { createDocument } from '@mixmark-io/domino'
 
 import courses from '../courses.json'
+
+const turndownService = new TurndownService()
 
 const trim = (text: string, max: number) => text.length > max ? text.substring(0, max - 1)+'…' : text
 
@@ -44,10 +24,10 @@ const checkCourse = async ({ courseID, canvasID, announcementWebhook }: Course, 
 	newAnnouncements.reverse()
 
 	for (const announcement of newAnnouncements) {
-		const content = (await (await fetch('https://turndown.advaith.io', {
-			method: 'POST',
-			body: announcement.message
-		})).text()).replace(/\[(.+?)\]\((mailto:)?\1\)/g, '$1').replace(/\[(https?:\/\/.+?)\]\(.+?\)/g, '$1').replace(/https?:\/\/[^\s"'<>]+/g, url => url.replaceAll('\\', ''))
+		const content = turndownService.turndown(createDocument(announcement.message))
+			.replace(/\[(.+?)\]\((mailto:)?\1\)/g, '$1')
+			.replace(/\[(https?:\/\/.+?)\]\(.+?\)/g, '$1')
+			.replace(/https?:\/\/[^\s"'<>]+/g, url => url.replaceAll('\\', ''))
 
 		await fetch(announcementWebhook + '?with_components=true', {
 			method: 'POST',

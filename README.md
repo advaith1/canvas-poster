@@ -2,7 +2,7 @@
 
 canvas-poster crossposts all posts and announcements from Canvas into Discord, with a button to view the original post in Canvas.
 
-Based on [ed-poster](https://github.com/advaith1/ed-poster).
+Also see [ed-poster](https://github.com/advaith1/ed-poster) and [canvas-poster](https://github.com/advaith1/canvas-poster).
 
 ## Prerequisites
 
